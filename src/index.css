@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+@layer base {
+  html {
+    @apply font-sans;
+  }
+
+  body {
+    @apply bg-surface text-ink-900;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading text-ink-900;
+    font-weight: 600;
+  }
+}
+
+@utility text-brand-gradient {
+  @apply bg-brand-gradient bg-clip-text text-transparent;
+}
+
+@layer components {
+  :where(
+    .ant-input-outlined,
+    .ant-input-affix-wrapper-outlined,
+    .ant-select-outlined .ant-select-selector,
+    .ant-picker-outlined
+  ) {
+    box-shadow: 0 1px 2px rgb(29 25 48 / 0.05);
+  }
+
+  :where(input, textarea)::placeholder {
+    font-weight: 300;
+  }
+
+  :where(.ant-select-selection-placeholder) {
+    font-weight: 300;
+  }
+}
