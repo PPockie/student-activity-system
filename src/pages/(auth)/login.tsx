@@ -148,7 +148,7 @@ function Login() {
       <p className="text-ink-500 mt-6 text-center text-sm">
         ยังไม่มีบัญชี?{' '}
         <Link to="/register" className="text-primary font-medium hover:underline">
-          ลงทะเบียนนักศึกษา
+          ลงทะเบียน
         </Link>
       </p>
     </>

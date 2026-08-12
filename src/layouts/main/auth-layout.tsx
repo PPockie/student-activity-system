@@ -1,11 +1,6 @@
 import { GraduationCap } from 'lucide-react'
 import { Outlet } from 'react-router-dom'
 
-/**
- * Layout ของกลุ่ม (auth) — หน้าจอเดี่ยว ไม่มีเมนู
- * mobile: header gradient เต็มจอ + การ์ดขาวโค้งซ้อนขึ้นมา
- * md ขึ้นไป: การ์ดลอยกลางจอ
- */
 function AuthLayout() {
   return (
     <div className="bg-surface flex min-h-dvh flex-col md:items-center md:justify-center md:p-6">
@@ -14,7 +9,7 @@ function AuthLayout() {
           <GraduationCap className="size-8" strokeWidth={1.75} />
         </div>
         <p className="mt-5 text-lg font-semibold text-white">ระบบจัดการกิจกรรมนักศึกษา</p>
-        <p className="mt-1 text-sm text-white/80">กองทุนเงินให้กู้ยืมเพื่อการศึกษา (กยศ.)</p>
+        <p className="mt-1 text-sm text-white/80">กิจกกรรมของ นักศึกษาหาง่าย ได้ที่นี้</p>
       </header>
 
       <main className="-mt-8 flex-1 rounded-t-3xl bg-white px-6 pt-8 pb-10 shadow-sm md:mt-0 md:w-full md:max-w-md md:flex-none md:rounded-3xl md:p-10 md:shadow-lg">
@@ -22,7 +17,7 @@ function AuthLayout() {
           <div className="bg-brand-gradient mx-auto flex size-14 items-center justify-center rounded-2xl text-white">
             <GraduationCap className="size-8" strokeWidth={1.75} />
           </div>
-          <p className="mt-4 font-semibold">ระบบจัดการกิจกรรมนักศึกษา กยศ.</p>
+          <p className="mt-4 font-semibold">ระบบจัดการกิจกรรมนักศึกษา</p>
         </div>
 
         <Outlet />
