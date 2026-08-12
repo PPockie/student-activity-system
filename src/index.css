@@ -89,11 +89,11 @@
   }
 }
 
-/* เคารพการตั้งค่าลดการเคลื่อนไหวของระบบ — เหลือแค่ fade ของฉากหลัง */
+
 @media (prefers-reduced-motion: reduce) {
   .modal-slide-up-enter,
   .modal-slide-up-appear,
   .modal-slide-up-leave {
-    animation: none !important;
+    animation-duration: 1ms !important;
   }
 }
