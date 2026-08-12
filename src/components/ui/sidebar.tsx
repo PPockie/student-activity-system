@@ -1,6 +1,7 @@
-import { ChevronLeft, GraduationCap } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useSidebarCollapsed } from "../../hook/use-sidebar-collapsed";
+import AppLogo from "./app-logo";
 import type { NavItem } from "./nav-item";
 
 export interface SidebarProps {
@@ -36,12 +37,10 @@ function Sidebar({ items, subtitle, footer, className = "" }: SidebarProps) {
       <div
         className={`flex items-center gap-3 py-6 ${isHidden ? "justify-center px-2" : "px-5"}`}
       >
-        <div className="bg-brand-gradient flex size-10 shrink-0 items-center justify-center rounded-xl text-white">
-          <GraduationCap className="size-6" strokeWidth={1.75} />
-        </div>
+        <AppLogo className="size-10" decorative={!isHidden} />
         {!isHidden && (
           <div className="min-w-0">
-            <h3 className="truncate font-semibold">ระบบหาไรทำกัน</h3>
+            <h3 className="truncate font-semibold">ระบบกิจกรรมนักศึกษา</h3>
             {subtitle && (
               <p className="text-ink-500 truncate text-xs">{subtitle}</p>
             )}

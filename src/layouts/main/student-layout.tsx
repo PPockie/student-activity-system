@@ -8,6 +8,7 @@ import {
   RotateCcwClock,
 } from "lucide-react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import AppLogo from "../../components/ui/app-logo";
 import BottomTabBar from "../../components/ui/bottom-tab-bar";
 import Sidebar from "../../components/ui/sidebar";
 import type { NavItem } from "../../components/ui/nav-item";
@@ -42,9 +43,7 @@ function StudentLayout() {
         {isHome && (
           <header className="border-ink-100 z-10 flex h-20 shrink-0 items-center justify-between border-b bg-white/90 px-4 backdrop-blur md:px-8">
             <div className="flex items-center gap-4">
-              <div className="md:hidden flex h-full aspect-square bg-primary-100 text-primary-700 font-semibold items-center justify-center p-1 rounded-md overflow-hidden">
-                {"Logo"}
-              </div>
+              <AppLogo className="size-11 md:hidden" />
 
               {/* คำทักทาย + ชื่อ แสดงเฉพาะหน้าหลัก */}
               <div className="min-w-0">
