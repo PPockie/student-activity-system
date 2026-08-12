@@ -44,3 +44,56 @@
     font-weight: 300;
   }
 }
+
+.modal-slide-up-enter,
+.modal-slide-up-appear {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+  animation-play-state: paused;
+}
+
+.modal-slide-up-leave {
+  animation-duration: 0.24s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+  animation-play-state: paused;
+}
+
+.modal-slide-up-enter.modal-slide-up-enter-active,
+.modal-slide-up-appear.modal-slide-up-appear-active {
+  animation-name: modal-slide-up-in;
+  animation-play-state: running;
+}
+
+.modal-slide-up-leave.modal-slide-up-leave-active {
+  animation-name: modal-slide-up-out;
+  animation-play-state: running;
+}
+
+@keyframes modal-slide-up-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes modal-slide-up-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* เคารพการตั้งค่าลดการเคลื่อนไหวของระบบ — เหลือแค่ fade ของฉากหลัง */
+@media (prefers-reduced-motion: reduce) {
+  .modal-slide-up-enter,
+  .modal-slide-up-appear,
+  .modal-slide-up-leave {
+    animation: none !important;
+  }
+}
