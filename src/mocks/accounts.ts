@@ -5,10 +5,6 @@ export interface MockAccount extends AuthUser {
   password: string
 }
 
-/**
- * บัญชีจำลองสำหรับพัฒนา UI — ลบทิ้งเมื่อต่อ API จริง
- * รหัสผ่านทุกบัญชี: password
- */
 export const MOCK_ACCOUNTS: MockAccount[] = [
   {
     id: 'usr_admin_01',
@@ -37,7 +33,6 @@ export const MOCK_ACCOUNTS: MockAccount[] = [
   },
 ]
 
-/** บัญชีตัวอย่างสำหรับแสดงบนหน้า login ตอน dev */
 export const DEMO_CREDENTIALS: { role: Role; identifier: string; password: string }[] = MOCK_ACCOUNTS.map(
   (account) => ({
     role: account.role,
@@ -53,7 +48,6 @@ export class InvalidCredentialsError extends Error {
   }
 }
 
-/** จำลองการเรียก API login — แทนที่ด้วย POST /auth/login เมื่อ backend พร้อม */
 export async function mockLogin(payload: LoginPayload): Promise<AuthSession> {
   await new Promise((resolve) => setTimeout(resolve, 600))
 
