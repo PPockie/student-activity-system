@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useMatches } from "react-router-dom";
 
-export const APP_NAME = "ระบบกิจกรรม กยศ.";
+export const APP_NAME = "ระบบกิจกรรมนักศึกษา";
 
 export interface RouteHandle {
   title?: string;
