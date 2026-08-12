@@ -38,10 +38,18 @@ const HISTORY: HistoryCardData[] = [
     hours: 5,
     status: "cancelled",
   },
+  {
+    id: 5,
+    title: "ช่วยงานกีฬาสี",
+    date: "พฤ. 11 มิ.ย. 2569",
+    location: "สนามกีฬากลาง",
+    hours: 0,
+    status: "rejected",
+    note: "หลักฐานไม่ชัดเจน",
+  },
 ];
 
 const ALL_STATUS = "ทั้งหมด";
-/** ชิปกรองสร้างจากสถานะที่มีจริงในข้อมูล */
 const STATUS_FILTERS = [
   ALL_STATUS,
   ...new Set(HISTORY.map((item) => PARTICIPATION_STATUS_META[item.status].label)),
@@ -56,14 +64,14 @@ function StudentHistory() {
       PARTICIPATION_STATUS_META[item.status].label === statusLabel,
   );
 
-  const approvedHours = HISTORY.filter((item) => item.status === "approved").reduce(
-    (total, item) => total + item.hours,
-    0,
-  );
+  // const approvedHours = HISTORY.filter((item) => item.status === "approved").reduce(
+  //   (total, item) => total + item.hours,
+  //   0,
+  // );
 
   return (
     <StudentContentLayout pageLabel="ประวัติกิจกรรม" scroll={false}>
-      <div className="border-ink-100 flex shrink-0 items-center justify-between gap-3 rounded-2xl border bg-white px-4 py-3">
+      {/* <div className="border-ink-100 flex shrink-0 items-center justify-between gap-3 rounded-2xl border bg-white px-4 py-3">
         <div>
           <p className="text-ink-500 text-xs">ชั่วโมงที่อนุมัติแล้ว</p>
           <h4 className="text-primary text-2xl font-semibold">{approvedHours} ชม.</h4>
@@ -72,7 +80,7 @@ function StudentHistory() {
           <p className="text-ink-500 text-xs">กิจกรรมที่ลงทะเบียน</p>
           <h4 className="text-ink-900 text-2xl font-semibold">{HISTORY.length}</h4>
         </div>
-      </div>
+      </div> */}
 
       <FilterCategoryActivity
         className="shrink-0"
@@ -85,7 +93,8 @@ function StudentHistory() {
         <Empty description="ไม่พบกิจกรรม" className="py-10!" />
       ) : (
         <div className="min-h-0 flex-1 overflow-y-auto pb-4">
-          <CardHistoryList items={list} />
+          {/* TODO: ต่อกับหน้าใบรับรอง / อัปโหลดหลักฐานใหม่เมื่อมี endpoint */}
+          <CardHistoryList items={list} onAction={() => undefined} />
         </div>
       )}
     </StudentContentLayout>
