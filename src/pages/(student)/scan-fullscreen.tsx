@@ -15,11 +15,9 @@ import {
   type ParsedCheckInCode,
 } from "../../utils/schemas/check-in-code";
 
-/** หน้ากล้องเต็มจอ — อยู่นอก StudentLayout จึงไม่มี header/แถบเมนูล่างมาบัง */
 function StudentScanFullscreen() {
   const navigate = useNavigate();
   const location = useLocation();
-  /** รหัสที่พิมพ์มาจากหน้าก่อนหน้า (ถ้ามี) ข้ามขั้นตอนสแกนไปเลย */
   const initialCode = (location.state as { code?: string } | null)?.code ?? null;
 
   const [code, setCode] = useState<string | null>(initialCode);
@@ -29,9 +27,7 @@ function StudentScanFullscreen() {
   const isScanning = code === null;
 
   const parsed: ParsedCheckInCode | null = code === null ? null : parseCheckInCode(code);
-  /** หมดอายุ / ผิดรูปแบบ = ยืนยันไม่ได้ (โค้ดที่พิมพ์เองปล่อยผ่านให้ backend ตรวจ) */
   const blocked = parsed?.ok === false && parsed.reason !== "format";
-  /** ประเภทมาจาก QR — ถ้าอ่านไม่ได้ ให้ backend เป็นคนตัดสิน */
   const typeLabel = parsed?.ok ? CHECK_IN_TYPE_LABEL[parsed.data.t] : null;
 
   const handleResult = useCallback((value: string) => setCode(value), []);
@@ -40,7 +36,6 @@ function StudentScanFullscreen() {
     onResult: handleResult,
   });
 
-  /** ผลตรวจความสามารถของเบราว์เซอร์ — โชว์เฉพาะตอน dev เพื่อ debug */
   const [support, setSupport] = useState<CameraSupport | null>(null);
   useEffect(() => {
     if (import.meta.env.DEV) void getCameraSupport().then(setSupport);
