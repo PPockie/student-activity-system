@@ -26,25 +26,33 @@ function joinDateTime(date?: string, time?: string): string {
 export interface CardActivityProps {
   activity: ActivityCardData;
   to?: string;
+  /** กดแล้วเปิดรายละเอียดในหน้าเดิม — มีค่านี้จะไม่ใช้ `to` */
+  onSelect?: (activity: ActivityCardData) => void;
   className?: string;
 }
 
 export interface CardActivityListProps {
   activities: ActivityCardData[];
   getItemLink?: (activity: ActivityCardData) => string;
+  onSelect?: (activity: ActivityCardData) => void;
   className?: string;
 }
 
 export default function CardActivityList({
   activities,
   getItemLink,
+  onSelect,
   className = "",
 }: CardActivityListProps) {
   return (
     <ul className={`grid gap-3 md:grid-cols-2 xl:grid-cols-3 ${className}`}>
       {activities.map((activity) => (
         <li key={activity.id}>
-          <CardActivityItem activity={activity} to={getItemLink?.(activity)} />
+          <CardActivityItem
+            activity={activity}
+            to={getItemLink?.(activity)}
+            onSelect={onSelect}
+          />
         </li>
       ))}
     </ul>
@@ -54,6 +62,7 @@ export default function CardActivityList({
 export function CardActivityItem({
   activity,
   to,
+  onSelect,
   className = "",
 }: CardActivityProps) {
   const { title, category, date, endDate, time, endTime, location, hours, seatsLeft } =
@@ -120,14 +129,24 @@ export function CardActivityItem({
   );
 
   const cardClass = `border-ink-100 block rounded-2xl border bg-white p-4 ${className}`;
+  const interactiveClass = `${cardClass} hover:border-primary-200 transition-colors hover:shadow-sm`;
+
+  if (onSelect) {
+    return (
+      <button
+        type="button"
+        onClick={() => onSelect(activity)}
+        className={`${interactiveClass} w-full cursor-pointer text-left`}
+      >
+        {content}
+      </button>
+    );
+  }
 
   if (!to) return <div className={cardClass}>{content}</div>;
 
   return (
-    <Link
-      to={to}
-      className={`${cardClass} hover:border-primary-200 transition-colors hover:shadow-sm`}
-    >
+    <Link to={to} className={interactiveClass}>
       {content}
     </Link>
   );
